@@ -181,7 +181,6 @@ class Downloader
      */
     public function doesUserHaveAccess($name)
     {
-        $return = true;
         $fileList = $this->fileListReader->getFileList();
 
         //Get the array of roles
@@ -206,11 +205,15 @@ class Downloader
                 $intersection = array_intersect($roles, $fileList[$name]['allow']);
                 if (0 < count($intersection)) {
                     $return = true;
+                } else {
+                    $return = false;
                 }
             } elseif (isset($fileList[$name]['deny'])) {
                 $intersection = array_intersect($roles, $fileList[$name]['deny']);
                 if (1 > count($intersection)) {
                     $return = true;
+                } else {
+                    $return = false;
                 }
             }
         } else {
