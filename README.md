@@ -39,3 +39,15 @@ tyhand_document_downloader:
 
 Usage
 -----
+### Basic
+To create a link to a static document, first add the document to the file list yaml.
+```yaml
+# file_list.yml
+my_pdf:
+    path: ../Resources/MyPDF.pdf
+```
+
+Then in the twig file where you want to have a link to the document use the twig function provided in the bundle to create something along the lines of the following.
+```twig
+<a target="_blank" href="{{ tyhand_docdownloader_url('my_pdf') }}">My PDF</a>
+```
