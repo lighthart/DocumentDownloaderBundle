@@ -35,7 +35,7 @@ class Configuration implements ConfigurationInterface
         $builder->root('tyhand_document_downloader')
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('file_list')->defaultValue('/config/file_list.yml')
+                ->scalarNode('file_list')->defaultValue('app/config/file_list.yml')
             ->end()
         ;
 

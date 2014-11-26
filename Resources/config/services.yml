@@ -5,3 +5,9 @@ services:
     tyhand_docdownloader.downloader:
         class: TyHand\DocumentDownloaderBundle\DocumentDownloader\Downloader
         arguments: [ @tyhand_docdownloader.file_list_reader, @security.context ]
+
+    tyhand_docdownloader.twig.extension:
+        class: TyHand\DocumentDownloaderBundle\Twig\Extension\DocumentDownloaderExtension
+        arguments: [ @router ]
+        tags:
+            - { name: twig.extension }
