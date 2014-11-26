@@ -90,7 +90,7 @@ class DocumentDownloaderExtension extends \Twig_Extension
      *
      * @return string Extension name
      */
-    public function getName() 
+    public function getName()
     {
         return 'tyhand_docdownloader_extension';
     }

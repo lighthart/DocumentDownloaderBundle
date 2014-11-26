@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Tyler Hand <https://github.com/tyhand>
  */
-class ReportController extends ContainerAware
+class DocumentDownloaderController extends ContainerAware
 {
     /**
      * Get a file for download
