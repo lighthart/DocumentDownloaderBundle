@@ -38,7 +38,7 @@ class TyHandDocumentDownloaderExtension extends Extension
         $loader->load('services.yml');
 
         //Setup the file reader
-        $fileListReaderDefinition = $container->getDefinition('tyhand_docdownloader.file_reader');
+        $fileListReaderDefinition = $container->getDefinition('tyhand_docdownloader.file_list_reader');
 
         //Set the file list path
         $fileListReaderDefinition->addMethodCall('setFileListPath', array($config['file_list']));
@@ -66,6 +66,6 @@ class TyHandDocumentDownloaderExtension extends Extension
      * @return string The alias
      */
     public function getAlias() {
-        return 'tyhand_document_downloader';
+        return 'ty_hand_document_downloader';
     }
 }

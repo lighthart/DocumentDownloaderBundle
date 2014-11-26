@@ -11,7 +11,7 @@
 
 namespace TyHand\DocumentDownloaderBundle\DocumentDownloader;
 
-use TyHand\DocumentDownloaderBundle\FileListReader;
+use TyHand\DocumentDownloaderBundle\DocumentDownloader\FileListReader;
 
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +54,7 @@ class Downloader
      * Constructor
      *
      * @param FileListReader  $fileListReader  The file list reader
-     * @param SecurityCotnext $seucrityContext The security context from symfony
+     * @param SecurityContext $seucrityContext The security context from symfony
      */
     public function __construct(FileListReader $fileListReader, SecurityContext $securityContext)
     {

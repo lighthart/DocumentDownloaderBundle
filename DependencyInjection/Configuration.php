@@ -12,7 +12,7 @@
 namespace TyHand\DocumentDownloaderBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Defition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * This class contains the configuration settings for the bundle
