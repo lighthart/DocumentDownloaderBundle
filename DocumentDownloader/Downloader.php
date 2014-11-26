@@ -144,7 +144,7 @@ class Downloader
     {
         $fileList = $this->fileListReader->getFileList();
         if (array_key_exists($name, $fileList) && isset($fileList[$name]['path'])) {
-            if (file_exists(sprintf('%s/%s', $this->fileListReader->getRootDir(), $fileList[$name]['path']))) {
+            if (file_exists($this->getFilePath($name))) {
                 return true;
             }
         }

@@ -1,6 +1,7 @@
 services:
     tyhand_docdownloader.file_list_reader:
         class: TyHand\DocumentDownloaderBundle\DocumentDownloader\FileListReader
+        arguments: [ %kernel.root_dir% ]
 
     tyhand_docdownloader.downloader:
         class: TyHand\DocumentDownloaderBundle\DocumentDownloader\Downloader
