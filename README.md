@@ -19,6 +19,14 @@ public function registerBundles()
     )
 } 
 ```
+Finally, since this bundle has a controller action, you need to include the bundle's routing file into the project's main routing file.
+```yaml
+# app/config/routing.yml
+TyHandDocumentDownloader:
+    resource: "@TyHandDocumentDownloaderBundle/Resources/config/routing.yml"
+    prefix: /documents
+    # prefix can be whatever you need it to be
+```
 
 Usage
 -----
