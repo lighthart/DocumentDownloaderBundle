@@ -1,0 +1,3 @@
+TyHandDocDownloaderBundle_getFile:
+    pattern: /documents/{name}
+    defaults: { _controller: TyHandDocumentDownloaderBundle:DocumentDownloader:getFile }

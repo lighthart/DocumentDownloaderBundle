@@ -1,0 +1,7 @@
+services:
+    tyhand_docdownloader.file_list_reader:
+        class: TyHand\DocumentDownloaderBundle\DocumentDownloader\FileListReader
+
+    tyhand_docdownloader.downloader:
+        class: TyHand\DocumentDownloaderBundle\DocumentDownloader\Downloader
+        arguments: [ @tyhand_docdownloader.file_list_reader, @security.context ]
