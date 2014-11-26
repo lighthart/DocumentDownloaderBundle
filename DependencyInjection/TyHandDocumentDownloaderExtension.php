@@ -54,7 +54,8 @@ class TyHandDocumentDownloaderExtension extends Extension
      *
      * @return Configuration               The bundles configuration
      */
-    public function getConfiguration(array $config, ContainerBuilder $container) {
+    public function getConfiguration(array $config, ContainerBuilder $container)
+    {
         //Create the configruation for the report bundle
         return new Configuration();
     }
@@ -65,7 +66,8 @@ class TyHandDocumentDownloaderExtension extends Extension
      *
      * @return string The alias
      */
-    public function getAlias() {
+    public function getAlias()
+    {
         return 'ty_hand_document_downloader';
     }
 }

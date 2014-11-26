@@ -20,11 +20,13 @@ use Symfony\Component\Console\Application;
  */
 class TyHandDocumentDownloaderBundle extends Bundle
 {
-    public function registerCommands(Application $application){
+    public function registerCommands(Application $application)
+    {
         parent::registerCommands($application);
     }
     
-    public function build(ContainerBuilder $container) {
+    public function build(ContainerBuilder $container)
+    {
         parent::build($container);
     }
 }

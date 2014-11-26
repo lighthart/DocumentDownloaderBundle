@@ -87,8 +87,8 @@ class Downloader
             }
         }
 
-        //Check that the current user has access to view the document
-        if (!$this->doesUserHaveAccess($name)) {
+        //Check that the current user has access to view the document (only check this if either allow or deny options were set)
+        if ($this->hasSecurityRestrictions($name) && !$this->doesUserHaveAccess($name)) {
             if ($exceptions) {
                 throw new AccessDeniedException('You do not have permission to access the requested document');
             } else {
@@ -148,6 +148,26 @@ class Downloader
                 return true;
             }
         }
+        return false;
+    }
+
+
+    /**
+     * Checks whether a file in the list has security restriction options set
+     *
+     * @param  string  $name The name of the file in the file list
+     *
+     * @return boolean       Whether security restrictions options are set or not
+     */
+    public function hasSecurityRestrictions($name)
+    {
+        $fileList = $this->fileListReader->getFileList();
+        if (isset($fileList[$name])) {
+            if (isset($fileList[$name]['allow']) || isset($fileList[$name]['deny'])) {
+                return true;
+            }
+        }
+
         return false;
     }
 
