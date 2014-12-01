@@ -51,3 +51,33 @@ Then in the twig file where you want to have a link to the document use the twig
 ```twig
 <a target="_blank" href="{{ tyhand_docdownloader_url('my_pdf') }}">My PDF</a>
 ```
+
+### Restricting By Roles
+There are two ways to restrict by roles, 'allow' and 'deny'.  Allow sets a list of roles that a user needs at least one of to retrieve the document; Whereas Deny sets a list of roles that if the user has any of them then they cannot retrieve the document.
+
+For example, if given the following example config:
+```yaml
+# file_list.yml
+my_pdf:
+    path: ../Resources/MyPDF.pdf
+    allow:
+        - ROLE_USER
+
+supervisor_notice:
+    path: ../Resources/SupervisorNotice.pdf
+    allow:
+        - ROLE_SUPERVISOR
+```
+A user with the roles ['ROLE_USER', 'ROLE_SUPERVISOR'] can view both documents, but a user with the roles ['ROLE_USER'] can only view the my_pdf document.  If the link to supervisor_notice was somehow visible to the user without the supervisor role, a 403 will be returned if they try to retrieve it.
+
+Another example this time for deny:
+```yaml
+# file_list.yml
+coup_detat_plans:
+    path: ../Resources/donotlookatthis.pdf
+    deny:
+        - ROLE_SUPERVISOR
+```
+In this case any user with 'ROLE_SUPERVISOR' cannot view the document.
+
+Currently the allow and deny options cannot be used together.
