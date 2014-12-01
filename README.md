@@ -80,4 +80,5 @@ coup_detat_plans:
 ```
 In this case any user with 'ROLE_SUPERVISOR' cannot view the document.
 
-Currently the allow and deny options cannot be used together.
+Currently the 'allow' option and the 'deny' option cannot be used at the same time for a single file.
+
