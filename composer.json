@@ -1,12 +1,12 @@
 {
-    "name": "tyhand/document-downloader-bundle",
+    "name": "dlighthart/document-downloader-bundle",
     "license": "MIT",
     "type": "symfony-bundle",
     "description": "A quick lazy and somewhat useless bundle to handle download links to static pdf files",
     "autoload": {
-        "psr-0": { "TyHand\\DocumentDownloaderBundle": "" }
+        "psr-0": { "Lighthart\\DocumentDownloaderBundle": "" }
     },
-    "target-dir": "TyHand/DocumentDownloaderBundle",
+    "target-dir": "Lighthart/DocumentDownloaderBundle",
     "require": {
         "symfony/symfony": ">=2.2.0"
     }
