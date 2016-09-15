@@ -6,7 +6,7 @@ Installing
 ----------
 First add the project to your Symfony project's composer.json, which can be done via the command line like the following.
 ```bash
-$ composer require tyhand/document-downloader-bundle "~0.1"
+$ composer require lighthart/document-downloader-bundle "~0.1"
 ```
 
 Next, add the bundle to your project's AppKernel.php in the register bundles method.
