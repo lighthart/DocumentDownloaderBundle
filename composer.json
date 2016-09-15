@@ -1,5 +1,5 @@
 {
-    "name": "dlighthart/document-downloader-bundle",
+    "name": "lighthart/document-downloader-bundle",
     "license": "MIT",
     "type": "symfony-bundle",
     "description": "A quick lazy and somewhat useless bundle to handle download links to static pdf files",
