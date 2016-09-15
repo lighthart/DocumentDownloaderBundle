@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TyHandDocumentDownloaderBundle package.
+ * This file is part of the LighthartDocumentDownloaderBundle package.
  *
  * (c) Tyler Hand <http://github.com/tyhand>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TyHand\DocumentDownloaderBundle\Twig\Extension;
+namespace Lighthart\DocumentDownloaderBundle\Twig\Extension;
 
 use Symfony\Component\Routing\Router;
 
@@ -42,7 +42,6 @@ class DocumentDownloaderExtension extends \Twig_Extension
     // BASE METHODS //
     //////////////////
 
-
     /**
      * Constructor
      *
@@ -54,11 +53,9 @@ class DocumentDownloaderExtension extends \Twig_Extension
         $this->router = $router;
     }
 
-
     ////////////////////////////
     // TWIG EXTENSION METHODS //
     ////////////////////////////
-
 
     /**
      * Initialize
@@ -70,7 +67,6 @@ class DocumentDownloaderExtension extends \Twig_Extension
         $this->environment = $environment;
     }
 
-
     /**
      * Get the list of functions this twig extension provides
      *
@@ -79,11 +75,10 @@ class DocumentDownloaderExtension extends \Twig_Extension
     public function getFunctions()
     {
         //Function definition
-        return array(
-            'tyhand_docdownloader_url' => new \Twig_Function_Method($this, 'url',  array('is_safe' => array('html')))
-        );
+        return [
+            'lighthart_docdownloader_url' => new \Twig_Function_Method($this, 'url', ['is_safe' => ['html']]),
+        ];
     }
-
 
     /**
      * Return the name of the extension
@@ -92,14 +87,12 @@ class DocumentDownloaderExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'tyhand_docdownloader_extension';
+        return 'lighthart_docdownloader_extension';
     }
-
 
     ///////////////
     // FUNCTIONS //
     ///////////////
-
 
     /**
      * Create a url for the document with the given name
@@ -111,6 +104,6 @@ class DocumentDownloaderExtension extends \Twig_Extension
     public function url($name)
     {
         //Create the link
-        return $this->router->generate('TyHandDocDownloaderBundle_getFile', array('name' => $name));
+        return $this->router->generate('LighthartDocDownloaderBundle_getFile', ['name' => $name]);
     }
 }

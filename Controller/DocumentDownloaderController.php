@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TyHandDocumentDownloaderBundle package.
+ * This file is part of the LighthartDocumentDownloaderBundle package.
  *
  * (c) Tyler Hand <http://github.com/tyhand>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TyHand\DocumentDownloaderBundle\Controller;
+namespace Lighthart\DocumentDownloaderBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +30,6 @@ class DocumentDownloaderController extends ContainerAware
      */
     public function getFileAction($name)
     {
-        return $this->container->get('tyhand_docdownloader.downloader')->getResponseForFile($name, true);
+        return $this->container->get('lighthart_docdownloader.downloader')->getResponseForFile($name, true);
     }
 }

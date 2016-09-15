@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TyHandDocumentDownloaderBundle package.
+ * This file is part of the LighthartDocumentDownloaderBundle package.
  *
  * (c) Tyler Hand <http://github.com/tyhand>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TyHand\DocumentDownloaderBundle\DocumentDownloader;
+namespace Lighthart\DocumentDownloaderBundle\DocumentDownloader;
 
 use Symfony\Component\Yaml\Parser;
 
@@ -58,7 +58,6 @@ class FileListReader
     // BASE METHODS //
     //////////////////
 
-
     /**
      * Constructor
      *
@@ -71,15 +70,13 @@ class FileListReader
 
         //Init the other variables
         $this->fileListPath = null;
-        $this->fileList = null;
-        $this->ready = false;
+        $this->fileList     = null;
+        $this->ready        = false;
     }
-
 
     /////////////
     // METHODS //
     /////////////
-
 
     /**
      * Read the file list configuration
@@ -100,7 +97,6 @@ class FileListReader
         //Return
         return $this->ready;
     }
-
 
     /**
      * Reads the file list configuration
@@ -124,14 +120,13 @@ class FileListReader
         $parser = new Parser();
         try {
             $fileList = $parser->parse(file_get_contents($filePath));
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
 
         //Return the file list
         return $fileList;
     }
-
 
     /**
      * Validate the file list array
@@ -146,8 +141,8 @@ class FileListReader
          * 2) each file has a path
          * 3) check that there is only either allow or deny or neither
          */
-        $visited = array();
-        foreach($fileList as $name => $info) {
+        $visited = [];
+        foreach ($fileList as $name => $info) {
             if (in_array($name, $visited)) {
                 throw new \Exception(sprintf('Name "%s" is used more than once in the document downloads file list', $name));
             } else {
@@ -167,7 +162,6 @@ class FileListReader
         return true;
     }
 
-
     /**
      * Get the file list
      *
@@ -180,7 +174,6 @@ class FileListReader
         }
         return $this->fileList;
     }
-
 
     /////////////////////////
     // GETTERS AND SETTERS //

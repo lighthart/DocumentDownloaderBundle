@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TyHandDocumentDownloaderBundle package.
+ * This file is part of the LighthartDocumentDownloaderBundle package.
  *
  * (c) Tyler Hand <http://github.com/tyhand>
  *
@@ -9,16 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace TyHand\DocumentDownloaderBundle\DocumentDownloader;
+namespace Lighthart\DocumentDownloaderBundle\DocumentDownloader;
 
-use TyHand\DocumentDownloaderBundle\DocumentDownloader\FileListReader;
-
-use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Component\HttpFoundation\Response;
+use Lighthart\DocumentDownloaderBundle\DocumentDownloader\FileListReader;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\SecurityContext;
 
 /**
  * This class is responsible for checking that a file exists and retrieving them if they do
@@ -49,24 +48,23 @@ class Downloader
     // BASE METHODS //
     //////////////////
 
-
     /**
      * Constructor
      *
      * @param FileListReader  $fileListReader  The file list reader
      * @param SecurityContext $seucrityContext The security context from symfony
      */
-    public function __construct(FileListReader $fileListReader, SecurityContext $securityContext)
-    {
-        $this->fileListReader = $fileListReader;
+    public function __construct(
+        FileListReader  $fileListReader,
+        SecurityContext $securityContext
+    ) {
+        $this->fileListReader  = $fileListReader;
         $this->securityContext = $securityContext;
     }
-
 
     /////////////
     // METHODS //
     /////////////
-
 
     /**
      * Get the binary response containing the file aliased by the given name
@@ -76,8 +74,10 @@ class Downloader
      *
      * @return Response         The Symfony response for the file
      */
-    public function getResponseForFile($name, $exceptions = true)
-    {
+    public function getResponseForFile(
+        $name,
+        $exceptions = true
+    ) {
         //Check that the file exists and is accessible
         if (!$this->doesFileExistInList($name) || !$this->doesFileExist($name)) {
             if ($exceptions) {
@@ -115,9 +115,8 @@ class Downloader
         return $response;
     }
 
-
     /**
-     * Check whether a given file 
+     * Check whether a given file
      *
      * @param  string  $name The name to check for in the file list
      *
@@ -131,7 +130,6 @@ class Downloader
             return false;
         }
     }
-
 
     /**
      * Check whether the actual file exist
@@ -150,7 +148,6 @@ class Downloader
         }
         return false;
     }
-
 
     /**
      * Checks whether a file in the list has security restriction options set
@@ -171,7 +168,6 @@ class Downloader
         return false;
     }
 
-
     /**
      * Check whether the current user have the required roles to view the file
      *
@@ -189,10 +185,10 @@ class Downloader
                 if (
                     $role instanceof \Symfony\Component\Security\Core\Role\SwitchUserRole ||
                     $role instanceof \Symfony\Component\Security\Core\Role\Role
-                    ) {
+                ) {
                     return $role->getRole();
                 } else {
-                    return (string)$role;
+                    return (string) $role;
                 }
             }, $this->securityContext->getToken()->getRoles());
         } catch (\Exception $e) {
@@ -222,7 +218,6 @@ class Downloader
 
         return $return;
     }
-
 
     /**
      * Get the path of a file with the given name

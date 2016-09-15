@@ -1,14 +1,14 @@
 services:
-    tyhand_docdownloader.file_list_reader:
-        class: TyHand\DocumentDownloaderBundle\DocumentDownloader\FileListReader
+    lighthart_docdownloader.file_list_reader:
+        class: Lighthart\DocumentDownloaderBundle\DocumentDownloader\FileListReader
         arguments: [ %kernel.root_dir% ]
 
-    tyhand_docdownloader.downloader:
-        class: TyHand\DocumentDownloaderBundle\DocumentDownloader\Downloader
-        arguments: [ @tyhand_docdownloader.file_list_reader, @security.context ]
+    lighthart_docdownloader.downloader:
+        class: Lighthart\DocumentDownloaderBundle\DocumentDownloader\Downloader
+        arguments: [ @"lighthart_docdownloader.file_list_reader", "@security.context" ]
 
-    tyhand_docdownloader.twig.extension:
-        class: TyHand\DocumentDownloaderBundle\Twig\Extension\DocumentDownloaderExtension
-        arguments: [ @router ]
+    lighthart_docdownloader.twig.extension:
+        class: Lighthart\DocumentDownloaderBundle\Twig\Extension\DocumentDownloaderExtension
+        arguments: [ "@router" ]
         tags:
             - { name: twig.extension }

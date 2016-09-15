@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TyHandDocumentDownloaderBundle package.
+ * This file is part of the LighthartDocumentDownloaderBundle package.
  *
  * (c) Tyler Hand <http://github.com/tyhand>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TyHand\DocumentDownloaderBundle\DependencyInjection;
+namespace Lighthart\DocumentDownloaderBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -32,10 +32,10 @@ class Configuration implements ConfigurationInterface
         $builder = new TreeBuilder();
 
         //Setup the config options
-        $builder->root('tyhand_document_downloader')
+        $builder->root('lighthart_document_downloader')
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('file_list')->defaultValue('config/file_list.yml')
+            ->scalarNode('file_list')->defaultValue('config/file_list.yml')
             ->end()
         ;
 
