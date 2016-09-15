@@ -5,7 +5,7 @@ services:
 
     lighthart_docdownloader.downloader:
         class: Lighthart\DocumentDownloaderBundle\DocumentDownloader\Downloader
-        arguments: [ @"lighthart_docdownloader.file_list_reader", "@security.context" ]
+        arguments: [ "@lighthart_docdownloader.file_list_reader", "@security.context" ]
 
     lighthart_docdownloader.twig.extension:
         class: Lighthart\DocumentDownloaderBundle\Twig\Extension\DocumentDownloaderExtension

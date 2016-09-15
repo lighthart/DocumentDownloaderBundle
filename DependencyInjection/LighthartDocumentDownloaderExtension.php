@@ -70,6 +70,6 @@ class LighthartDocumentDownloaderExtension extends Extension
      */
     public function getAlias()
     {
-        return 'ty_hand_document_downloader';
+        return 'lighthart_document_downloader';
     }
 }
