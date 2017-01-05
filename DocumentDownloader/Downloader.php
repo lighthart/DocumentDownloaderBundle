@@ -38,7 +38,7 @@ class Downloader
     protected $fileListReader;
 
     /**
-     * The security context from Symfony
+     * The TokenStorage from Symfony
      *
      * @var tokenStorage
      */
