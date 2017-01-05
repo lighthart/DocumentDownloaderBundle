@@ -52,11 +52,11 @@ class Downloader
      * Constructor
      *
      * @param FileListReader  $fileListReader  The file list reader
-     * @param tokenStorage $seucrityContext The security context from symfony
+     * @param TokenStorage $tokenStorage The TokenStorage from symfony
      */
     public function __construct(
         FileListReader $fileListReader,
-        tokenStorage   $tokenStorage
+        TokenStorage   $tokenStorage
     ) {
         $this->fileListReader = $fileListReader;
         $this->tokenStorage   = $tokenStorage;
