@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\TokenStorage;
 
 /**
  * This class is responsible for checking that a file exists and retrieving them if they do
@@ -40,9 +40,9 @@ class Downloader
     /**
      * The security context from Symfony
      *
-     * @var SecurityContext
+     * @var tokenStorage
      */
-    protected $securityContext;
+    protected $tokenStorage;
 
     //////////////////
     // BASE METHODS //
@@ -52,14 +52,14 @@ class Downloader
      * Constructor
      *
      * @param FileListReader  $fileListReader  The file list reader
-     * @param SecurityContext $seucrityContext The security context from symfony
+     * @param tokenStorage $seucrityContext The security context from symfony
      */
     public function __construct(
-        FileListReader  $fileListReader,
-        SecurityContext $securityContext
+        FileListReader $fileListReader,
+        tokenStorage   $tokenStorage
     ) {
-        $this->fileListReader  = $fileListReader;
-        $this->securityContext = $securityContext;
+        $this->fileListReader = $fileListReader;
+        $this->tokenStorage   = $tokenStorage;
     }
 
     /////////////
@@ -190,7 +190,7 @@ class Downloader
                 } else {
                     return (string) $role;
                 }
-            }, $this->securityContext->getToken()->getRoles());
+            }, $this->tokenStorage->getToken()->getRoles());
         } catch (\Exception $e) {
             throw new \Exception('The Document Downloader requires the roles to either be in string format or castable to a string');
         }
