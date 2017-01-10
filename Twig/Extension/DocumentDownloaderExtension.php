@@ -58,16 +58,6 @@ class DocumentDownloaderExtension extends \Twig_Extension
     ////////////////////////////
 
     /**
-     * Initialize
-     *
-     * @param  Twig_Environment $environment The twig environment object
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
      * Get the list of functions this twig extension provides
      *
      * @return array The list of functions keyed by function name
@@ -76,7 +66,12 @@ class DocumentDownloaderExtension extends \Twig_Extension
     {
         //Function definition
         return [
-            'lighthart_docdownloader_url' => new \Twig_Function_Method($this, 'url', ['is_safe' => ['html']]),
+            'lighthart_docdownloader_url' => new \Twig_SimpleFunction('url',
+                [
+                    'needs_environment' => true,
+                    'is_safe'           => ['html'],
+                ]
+            ),
         ];
     }
 
