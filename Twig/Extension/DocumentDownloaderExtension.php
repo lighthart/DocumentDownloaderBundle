@@ -66,10 +66,11 @@ class DocumentDownloaderExtension extends \Twig_Extension
     {
         //Function definition
         return [
-            'lighthart_docdownloader_url' => new \Twig_SimpleFunction('url',
+            new \Twig_SimpleFunction('lighthart_docdownloader_url',
+                [$this, 'url'],
                 [
                     'needs_environment' => true,
-                    'is_safe'           => ['html'],
+                    'is_safe'           => ['html', 'dafuq?'],
                 ]
             ),
         ];
