@@ -1,3 +1,3 @@
 LighthartDocDownloaderBundle_getFile:
-    pattern: /documents/{name}
+    path: /documents/{name}
     defaults: { _controller: LighthartDocumentDownloaderBundle:DocumentDownloader:getFile }
