@@ -69,8 +69,8 @@ class DocumentDownloaderExtension extends \Twig_Extension
             new \Twig_SimpleFunction('lighthart_docdownloader_url',
                 [$this, 'url'],
                 [
-                    'needs_environment' => true,
-                    'is_safe'           => ['html', 'dafuq?'],
+                    // 'needs_environment' => true,
+                    'is_safe' => ['html'],
                 ]
             ),
         ];
