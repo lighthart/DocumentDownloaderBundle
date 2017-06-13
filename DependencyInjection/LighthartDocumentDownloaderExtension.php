@@ -36,14 +36,15 @@ class LighthartDocumentDownloaderExtension extends Extension
         //Load the configuration
         $configuration = $this->getConfiguration($configs, $container);
         $config        = $this->processConfiguration($configuration, $configs);
-        $loader        = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
         //Setup the file reader
-        $fileListReaderDefinition = $container->getDefinition('lighthart_docdownloader.file_list_reader');
+        $fileListReaderDefinition = $container->getDefinition('lighthart_document_downloader.file_list_reader');
 
         //Set the file list path
-        $fileListReaderDefinition->addMethodCall('setFileListPath', [$config['file_list']]);
+        $fileListReaderDefinition->addMethodCall('setFileList', [$configs[0]]);
         $fileListReaderDefinition->addMethodCall('init', []);
     }
 

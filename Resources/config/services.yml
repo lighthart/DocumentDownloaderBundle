@@ -1,14 +1,14 @@
 services:
-    lighthart_docdownloader.file_list_reader:
+    lighthart_document_downloader.file_list_reader:
         class: Lighthart\DocumentDownloaderBundle\DocumentDownloader\FileListReader
         arguments: [ %kernel.root_dir% ]
 
-    lighthart_docdownloader.downloader:
+    lighthart_document_downloader.downloader:
         class: Lighthart\DocumentDownloaderBundle\DocumentDownloader\Downloader
-        arguments: [ "@lighthart_docdownloader.file_list_reader", "@security.token_storage" ]
+        arguments: [ "@lighthart_document_downloader.file_list_reader", "@security.token_storage" ]
 
-    lighthart_docdownloader.twig.extension:
+    lighthart_document_downloader.twig.extension:
         class: Lighthart\DocumentDownloaderBundle\Twig\Extension\DocumentDownloaderExtension
-        arguments: [ "@router" ]
+        arguments: [ "@router","@lighthart_document_downloader.file_list_reader" ]
         tags:
             - { name: twig.extension }

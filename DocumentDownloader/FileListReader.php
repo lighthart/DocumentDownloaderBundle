@@ -11,8 +11,6 @@
 
 namespace Lighthart\DocumentDownloaderBundle\DocumentDownloader;
 
-use Symfony\Component\Yaml\Parser;
-
 /**
  * This class reads the file list class given the configuration settings and loads the data.
  *
@@ -25,13 +23,6 @@ class FileListReader
     ///////////////
     // VARIABLES //
     ///////////////
-
-    /**
-     * The path to the file listing file
-     *
-     * @var string
-     */
-    protected $fileListPath;
 
     /**
      * The saved file list if the file list has already been read
@@ -63,15 +54,15 @@ class FileListReader
      *
      * @param string $rootDir The root directory path
      */
-    public function __construct($rootDir)
-    {
+    public function __construct(
+        $rootDir
+    ) {
         //Set the root directory
         $this->rootDir = $rootDir;
 
         //Init the other variables
-        $this->fileListPath = null;
-        $this->fileList     = null;
-        $this->ready        = false;
+        // $this->fileList = null;
+        $this->ready = false;
     }
 
     /////////////
@@ -86,9 +77,11 @@ class FileListReader
     public function init()
     {
         //Read
-        $this->fileList = $this->read();
+        //$this->fileList = $this->read();
+        // This used to be read.  Now it is passed from config file
 
         //Validate
+
         $valid = $this->validate($this->fileList);
 
         //Set the ready flag
@@ -96,36 +89,6 @@ class FileListReader
 
         //Return
         return $this->ready;
-    }
-
-    /**
-     * Reads the file list configuration
-     *
-     * @return array The array form of the file list
-     */
-    public function read()
-    {
-        //Check that the path was set
-        if (null === $this->fileListPath) {
-            throw new \Exception('Filepath for the Document Downloader file list is not set');
-        }
-
-        //Check that the file exists
-        $filePath = sprintf('%s/%s', $this->rootDir, $this->fileListPath);
-        if (!file_exists($filePath)) {
-            throw new \Exception(sprintf('File [%s] does not exist', $filePath));
-        }
-
-        //Create a new YAML parser and read the file
-        $parser = new Parser();
-        try {
-            $fileList = $parser->parse(file_get_contents($filePath));
-        } catch (\Exception $e) {
-            throw $e;
-        }
-
-        //Return the file list
-        return $fileList;
     }
 
     /**
@@ -143,12 +106,6 @@ class FileListReader
          */
         $visited = [];
         foreach ($fileList as $name => $info) {
-            if (in_array($name, $visited)) {
-                throw new \Exception(sprintf('Name "%s" is used more than once in the document downloads file list', $name));
-            } else {
-                $visited[] = $name;
-            }
-
             if (!isset($info['path']) || empty($info['path'])) {
                 throw new \Exception(sprintf('Missing required "path" value for file "%s"', $name));
             }
@@ -156,6 +113,13 @@ class FileListReader
             if (isset($info['allow']) && isset($info['deny'])) {
                 throw new \Exception(sprintf('Both "allow" and "deny" present for file "%s"', $name));
             }
+
+            //Check that the file exists
+            $filePath = sprintf('%s/%s', $this->rootDir, $info['path']);
+            if (!file_exists($filePath)) {
+                throw new \Exception(sprintf('File [%s] does not exist', $filePath));
+            }
+
         }
 
         //Return
@@ -169,6 +133,20 @@ class FileListReader
      */
     public function getFileList()
     {
+        if (!$this->ready) {
+            $this->init();
+        }
+        return $this->fileList;
+    }
+
+    /**
+     * Get the file list
+     *
+     * @return array The file list
+     */
+    public function setFileList($fileList)
+    {
+        $this->fileList = $fileList;
         if (!$this->ready) {
             $this->init();
         }

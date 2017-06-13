@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Contains actions to get a file for download
  *
  * @author Tyler Hand <https://github.com/tyhand>
+ * revised lthrt
  */
 class DocumentDownloaderController extends ContainerAware
 {
@@ -30,6 +31,6 @@ class DocumentDownloaderController extends ContainerAware
      */
     public function getFileAction($name)
     {
-        return $this->container->get('lighthart_docdownloader.downloader')->getResponseForFile($name, true);
+        return $this->container->get('lighthart_document_downloader.downloader')->getResponseForFile($name, true);
     }
 }

@@ -47,10 +47,14 @@ class DocumentDownloaderExtension extends \Twig_Extension
      *
      * @param Router $router The symfony router component
      */
-    public function __construct(Router $router)
-    {
+    public function __construct(
+        Router $router,
+               $reader
+    ) {
         //Set the variables
         $this->router = $router;
+        $this->reader = $reader;
+        $reader->init();
     }
 
     ////////////////////////////

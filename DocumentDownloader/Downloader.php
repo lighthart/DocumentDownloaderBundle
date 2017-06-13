@@ -66,6 +66,10 @@ class Downloader
     // METHODS //
     /////////////
 
+    // Not normally for public consumption
+    private function getFileListReader()
+    {return $this->fileListReader;}
+
     /**
      * Get the binary response containing the file aliased by the given name
      *
@@ -206,10 +210,10 @@ class Downloader
                 }
             } elseif (isset($fileList[$name]['deny'])) {
                 $intersection = array_intersect($roles, $fileList[$name]['deny']);
-                if (1 > count($intersection)) {
-                    $return = true;
-                } else {
+                if (0 < count($intersection)) {
                     $return = false;
+                } else {
+                    $return = true;
                 }
             }
         } else {

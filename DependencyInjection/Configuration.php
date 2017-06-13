@@ -30,12 +30,13 @@ class Configuration implements ConfigurationInterface
     {
         //Make a new builder
         $builder = new TreeBuilder();
-
         //Setup the config options
-        $builder->root('lighthart_document_downloader')
-            ->addDefaultsIfNotSet()
+        $builder->root('file_list')
+            ->prototype('array')
             ->children()
-            ->scalarNode('file_list')->defaultValue('config/file_list.yml')
+            ->scalarNode('path')->isRequired()->end()
+            ->arrayNode('allow')->prototype('scalar')->end()->end()
+            ->arrayNode('deny')->prototype('scalar')->end()->end()
             ->end()
         ;
 

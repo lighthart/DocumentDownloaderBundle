@@ -2,6 +2,8 @@ Document Downloader Bundle
 ==========================
 A quick, lazy, and somewhat useless bundle to provide a quicker way to produce links to a static pdf document while providing some minor security.
 
+Originally by tyhand, updates by lthrt.
+
 Installing
 ----------
 First add the project to your Symfony project's composer.json, which can be done via the command line like the following.
@@ -43,9 +45,23 @@ Usage
 To create a link to a static document, first add the document to the file list yaml.
 ```yaml
 # file_list.yml
-my_pdf:
-    path: ../Resources/MyPDF.pdf
+lighthart_document_downloader:
+    file1alias:
+        path: ../Resources/MyPDF1.pdf
+        deny: [ROLE_DENY]
+    file2alias:
+        path: ../Resources/MyPDF2.pdf
+    file3alias:
+        path: ../Resources/MyPDF3.pdf
 ```
+
+Then import this file into your config.yml:
+```yaml
+imports:
+    - { resource: "file_list.yml" }
+```
+
+Alternatively the 'lighthart_document_downloader' block can be put straight into the config, or imported any otehr relevant way.
 
 Then in the twig file where you want to have a link to the document use the twig function provided in the bundle to create something along the lines of the following.
 ```twig
