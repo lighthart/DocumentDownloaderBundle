@@ -1,6 +1,6 @@
 Document Downloader Bundle
 ==========================
-A quick, lazy, and somewhat useless bundle to provide a quicker way to produce links to a static pdf document while providing some minor security.
+A quick, lazy, and somewhat useless bundle to provide a quicker way to produce links to a static pdf document while providing some minor security.  Orginally by thand, but he stopped maintaining it
 
 Originally by tyhand, updates by lthrt.
 
