@@ -61,7 +61,7 @@ imports:
     - { resource: "file_list.yml" }
 ```
 
-Alternatively the 'lighthart_document_downloader' block can be put straight into the config, or imported any otehr relevant way.
+Alternatively the 'lighthart_document_downloader' block can be put straight into the config, or imported any other relevant way.
 
 Then in the twig file where you want to have a link to the document use the twig function provided in the bundle to create something along the lines of the following.
 ```twig
