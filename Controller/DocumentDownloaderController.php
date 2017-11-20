@@ -11,7 +11,7 @@
 
 namespace Lighthart\DocumentDownloaderBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @author Tyler Hand <https://github.com/tyhand>
  * revised lthrt
  */
-class DocumentDownloaderController extends ContainerAware
+class DocumentDownloaderController extends Controller
 {
     /**
      * Get a file for download
